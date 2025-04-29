@@ -16,7 +16,7 @@ Follow these simple steps to get started:
    Download the project from your terminal:
    ```bash
    git clone https://github.com/fazelucq1/GoRecon.git
-   cd gorecon
+   cd GoRecon
    ```
 
 2. **Install Dependencies**  
