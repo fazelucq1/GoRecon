@@ -1,8 +1,8 @@
-module gorecon
+module github.com/fazelucq1/GoRecon
 
 go 1.21
 
 require (
     github.com/chromedp/chromedp v0.9.5
-    github.com/shodan/shodan-go v0.0.0-20240815142641-2ea85c2f7728
+    github.com/ns3777k/go-shodan/v4 v4.0.0
 )
