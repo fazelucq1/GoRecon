@@ -1,35 +1,28 @@
 import argparse
-from gorecon.search import shodan_search
-from gorecon.screenshot import capture_screenshot
-from gorecon.report import generate_report
+import os
+from pyrecon.search import shodan_search
+from pyrecon.screenshot import capture_screenshot
+from pyrecon.report import generate_report
 
 def main():
-    parser = argparse.ArgumentParser(description='GoRecon Python CLI')
+    parser = argparse.ArgumentParser(description='PyRecon CLI')
     parser.add_argument('--service', required=True,
-                        choices=['shodan', 'screenshot', 'report'],
-                        help='Servizio da eseguire')
-    parser.add_argument('--query', help='Query per Shodan o URL per screenshot')
-    parser.add_argument('--input', help='File JSON di input per report')
-    parser.add_argument('--output', help='File di output per report (default: report.json)', default='report.json')
+                        help='Name of service to search (e.g. gophish)')
+    parser.add_argument('--output', help='Output HTML report file', default='report.html')
     args = parser.parse_args()
 
-    if args.service == 'shodan':
-        if not args.query:
-            parser.error('Per shodan è richiesto --query')
-        results = shodan_search(args.query)
-        print(results)
+    results = shodan_search(args.service)
+    hosts = [match.get('ip_str') for match in results.get('matches', [])]
 
-    elif args.service == 'screenshot':
-        if not args.query:
-            parser.error('Per screenshot è richiesto --query (URL)')
-        path = capture_screenshot(args.query)
-        print(f"Screenshot salvato in: {path}")
+    os.makedirs('screenshots', exist_ok=True)
+    entries = []
+    for ip in hosts:
+        url = f"http://{ip}"
+        path = capture_screenshot(url)
+        entries.append({'host': ip, 'url': url, 'screenshot': path})
 
-    elif args.service == 'report':
-        if not args.input:
-            parser.error('Per report è richiesto --input')
-        generate_report(args.input, args.output)
-        print(f"Report generato in: {args.output}")
+    generate_report(entries, args.output)
+    print(f"Report generated: {args.output}")
 
 if __name__ == '__main__':
     main()
