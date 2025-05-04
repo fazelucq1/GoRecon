@@ -25,4 +25,4 @@ This will:
 1. Search Shodan for the given service.  
 2. For each matching host, capture a screenshot of its web interface.  
 3. Generate an HTML report including details and screenshots.
-```
+
