@@ -1,6 +1,6 @@
 # PyRecon 🧭
 
-## To perform it you need to have shodan pro
+## 🚨To make it work you need to have shodan pro🚨
 
 A reconnaissance and reporting tool in Python.  
 
