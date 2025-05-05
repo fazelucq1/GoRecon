@@ -16,15 +16,18 @@ def google_dork_search(dork: str, num_results: int = 20) -> set:
         except Exception as e:
             print(f"[ERROR] Request failed: {e}")
             continue
-        results = soup.select('div.yuRUbf > a')
-        print(f"[DEBUG] Found {len(results)} link elements on page starting {start}")
-        for div in results:
-            link = div.get('href')
-            print(f"[DEBUG] Raw link: {link}")
+        for a in soup.find_all('a', href=True):
+            href = a['href']
+            if href.startswith('/url?q='):
+                link = href.split('&')[0].replace('/url?q=', '')
+            elif href.startswith('http'):
+                link = href
+            else:
+                continue
+            print(f"[DEBUG] Found link: {link}")
             try:
                 host = urllib.parse.urlparse(link).hostname
-                print(f"[DEBUG] Parsed host: {host}")
-                if host:
+                if host and not host.endswith('google.com'):
                     ip = socket.gethostbyname(host)
                     print(f"[DEBUG] Resolved {host} -> {ip}")
                     ips.add(ip)
