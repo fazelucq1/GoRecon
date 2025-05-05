@@ -48,6 +48,12 @@ Il report HTML include:
 - Grafici:
   - Conteggio URL per dominio (grafico a barre).
   - Distribuzione delle lunghezze degli URL (istogramma).
+ 
+ - **Errore `QStandardPaths: wrong permissions`**:
+- Questo è un problema di WSL. Correggi i permessi:
+    ```bash
+    chmod 0700 /mnt/wslg/runtime-dir
+    ```
 
 ## Note
 - Assicurati che il Custom Search Engine associato al CSE ID sia configurato per cercare su tutto il web su [cse.google.com](https://cse.google.com/cse/).
