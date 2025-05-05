@@ -18,6 +18,33 @@ A Python script to search URLs using Google Dorks via the Google Custom Search A
    pip install -r requirements.txt
    ```
 
+# Get the API 🐝
+
+## Step 1: Get Google API Credentials
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the "Custom Search JSON API":
+   - Navigate to "APIs & Services" > "Library"
+   - Search for "Custom Search JSON API"
+   - Click "Enable"
+
+## Step 2: Create API Key
+
+1. In Google Cloud Console, go to "APIs & Services" > "Credentials"
+2. Click "Create Credentials" > "API Key"
+3. Copy this key and put it in your `.env` file as `GOOGLE_API_KEY`
+
+## Step 3: Create Custom Search Engine (CX)
+
+1. Go to [Programmable Search Engine](https://programmablesearchengine.google.com/about/)
+2. Click "Get Started"
+3. Configure your search engine:
+   - You can set it to search the entire web
+   - Give it any name and description
+4. After creation, go to "Control Panel"
+5. Find your "Search engine ID" - this is your `GOOGLE_CX` value for `.env`
+
 ## Usage
 Run the script with custom Google Dorks parameters:
 ```bash
@@ -59,6 +86,4 @@ The HTML report includes:
 - Ensure the Custom Search Engine associated with the CSE ID is configured to search the entire web at [cse.google.com](https://cse.google.com/cse/).
 - The Google Custom Search API has a limit of 100 free queries per day.
 - Use responsibly, adhering to Google's terms of service and privacy regulations.
-
-## License
-MIT
+🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝
