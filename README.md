@@ -1,9 +1,9 @@
 # PyRecon
 
-A Python tool for discovering and analyzing URLs, collecting WHOIS information, taking screenshots, and generating professional HTML reports using Tailwind CSS.
+A Python tool for discovering servers running GoPhish, analyzing URLs, collecting WHOIS information, taking screenshots, and generating professional HTML reports using Tailwind CSS.
 
 ## Features
-- Crawls websites to discover URLs
+- Uses Google Dorks to find GoPhish admin interfaces
 - Extracts domain and IP information from URLs
 - Performs WHOIS lookups for domains and IPs
 - Captures screenshots of websites
@@ -36,26 +36,26 @@ pip install -r requirements.txt
    - Place it in your PATH or specify its location in the script
 
 ## Usage
-1. Discover URLs by crawling a website:
+1. Discover GoPhish servers using Google Dorks:
 ```bash
-python url_finder.py https://example.com --depth 2 --output input_urls.txt
+python url_finder.py --max-results 10 --output input_urls.txt
 ```
 2. Analyze URLs and generate reports:
 ```bash
 python url_analyzer.py
 ```
 3. Output:
-   - `input_urls.txt`: List of discovered URLs
+   - `input_urls.txt`: List of discovered GoPhish URLs
    - `output.json`: JSON file with analysis results
    - `report.html`: HTML report with Tailwind styling
    - `screenshots/`: Directory containing website screenshots
 
 ## Project Structure
 ```
-pyrecon/
+PyRecon/
 ├── input_urls.txt      # Input file with URLs
 ├── url_analyzer.py     # URL analysis script
-├── url_finder.py       # URL discovery script
+├── url_finder.py       # GoPhish server discovery script
 ├── requirements.txt    # Dependencies
 ├── README.md           # Project documentation
 ├── screenshots/        # Output directory for screenshots
@@ -68,8 +68,6 @@ pyrecon/
 - The analyzer runs in headless mode for screenshots
 - WHOIS queries may be rate-limited by some registrars
 - Screenshots are saved as PNG files in the `screenshots/` directory
-- URL crawling depth can be adjusted with the `--depth` parameter
-- The crawler respects the same domain and avoids external links
-
-## License
-MIT License
+- Google Dork searches are limited to avoid rate-limiting
+- Use responsibly and respect legal and ethical boundaries
+- Requires internet access for Google searches and WHOIS queries
