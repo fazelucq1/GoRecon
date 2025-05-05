@@ -1,34 +1,22 @@
-# PyRecon 🧭
+# PyRecon🧭
 
-## 🚨To make it work you need to have shodan pro🚨
-
-A reconnaissance and reporting tool in Python.  
+A reconnaissance and reporting tool using Google Dorks in Python.
 
 ## Installation
-```
-git clone https://github.com/fazelucq1/PyRecon.git
-cd PyRecon
-```
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuration
-Create a file `.env` at the project root containing:
-```
-SHODAN_API_KEY=your_api_key
-```
-
 ## Usage
 ```bash
-python main.py --service <service>
+python main.py --service <service> [--output report.html]
 ```
 Example:
 ```bash
-python main.py --service gophish
+python main.py --service gophish --output gophish_report.html
 ```
-This will:  
-1. Search Shodan for the given service.  
-2. For each matching host, capture a screenshot of its web interface.  
-3. Generate an HTML report including details and screenshots.
-
+This will:
+1. Perform a Google Dork search for the service name.
+2. Extract hostnames and resolve IPs.
+3. Capture screenshots of each host at `http://<IP>`.
+4. Generate an HTML report styled with Tailwind including links and screenshots.
