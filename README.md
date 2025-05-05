@@ -1,64 +1,64 @@
-# PyRecon🧭
+# PyRecon 🧭
 
-Script Python per cercare URL con Google Dorks tramite l'API Google Custom Search e generare un report HTML professionale e grafici analitici.
+A Python script to search URLs using Google Dorks via the Google Custom Search API and generate a professional HTML report with analytical charts.
 
-## Requisiti
+## Requirements
 - Python 3.8+
-- Dipendenze: `requests`, `python-dotenv`, `matplotlib`, `numpy`
-- Google API Key e Custom Search Engine ID
+- Dependencies: `requests`, `python-dotenv`, `matplotlib`, `numpy`
+- Google API Key and Custom Search Engine ID
 
-## Installazione
-1. Clona il repository:
+## Installation
+1. Clone the repository:
    ```bash
    git clone https://github.com/fazelucq1/PyRecon.git
    cd PyRecon
    ```
-2. Installa le dipendenze:
+2. Install the dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-
-## Utilizzo
-Esegui lo script con parametri Google Dorks personalizzati:
+## Usage
+Run the script with custom Google Dorks parameters:
 ```bash
 python main.py --intitle "Gophish - Login" --inurl login --max-results 10
 ```
-- **Parametri disponibili**:
-  - `--query`: Query di base (es. `login page`)
-  - `--intitle`: Cerca nel titolo (es. `Gophish - Login`)
-  - `--inurl`: Cerca nell'URL (es. `login`)
-  - `--site`: Limita a un dominio (es. `example.com`)
-  - `--filetype`: Tipo di file (es. `pdf`)
-  - `--intext`: Cerca nel testo (es. `admin`)
-  - `--exclude`: Escludi termine (es. `signup`)
-  - `--max-results`: Numero massimo di risultati (default: 10)
+- **Available parameters**:
+  - `--query`: Base query (e.g., `login page`)
+  - `--intitle`: Search in title (e.g., `Gophish - Login`)
+  - `--inurl`: Search in URL (e.g., `login`)
+  - `--site`: Restrict to a domain (e.g., `example.com`)
+  - `--filetype`: File type (e.g., `pdf`)
+  - `--intext`: Search in text (e.g., `admin`)
+  - `--exclude`: Exclude term (e.g., `signup`)
+  - `--max-results`: Maximum number of results (default: 10)
 
-- **Esempio**:
+- **Example**:
   ```bash
   python main.py --site example.com --filetype pdf --exclude signup
   ```
 
-- I risultati vengono salvati in `report.html`.
-- I grafici vengono salvati in `charts/`.
+- Results are saved in `report.html`.
+- Charts are saved in `charts/`.
 
 ## Report
-Il report HTML include:
-- Una tabella con gli URL trovati e i relativi domini.
-- Grafici:
-  - Conteggio URL per dominio (grafico a barre).
-  - Distribuzione delle lunghezze degli URL (istogramma).
- 
- - **Errore `QStandardPaths: wrong permissions`**:
-- Questo è un problema di WSL. Correggi i permessi:
+The HTML report includes:
+- A table listing found URLs and their domains.
+- Charts:
+  - URL count by domain (bar chart).
+  - URL length distribution (histogram).
+
+## Troubleshooting
+- **Error `QStandardPaths: wrong permissions`** (WSL):
+  - Fix permissions:
     ```bash
     chmod 0700 /mnt/wslg/runtime-dir
     ```
 
-## Note
-- Assicurati che il Custom Search Engine associato al CSE ID sia configurato per cercare su tutto il web su [cse.google.com](https://cse.google.com/cse/).
-- L'API Google Custom Search ha un limite di 100 query gratuite al giorno.
-- Usa responsabilmente, rispettando i termini di servizio di Google e le normative sulla privacy.
+## Notes
+- Ensure the Custom Search Engine associated with the CSE ID is configured to search the entire web at [cse.google.com](https://cse.google.com/cse/).
+- The Google Custom Search API has a limit of 100 free queries per day.
+- Use responsibly, adhering to Google's terms of service and privacy regulations.
 
-## Licenza
+## License
 MIT
