@@ -1,3 +1,5 @@
-__pycache__/
+pycache/ 
 *.pyc
-results.txt
+report.html 
+screenshots/
+.env
