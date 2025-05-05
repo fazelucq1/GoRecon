@@ -15,7 +15,7 @@ def generate_report(entries: list, output_file: str):
 """
     for entry in entries:
         html += f"""<div class='mb-8'>
-<h2 class='text-xl font-semibold'>{entry['host']}</h2>
+<h2 class='text-xl font-semibold'>{entry['host']} ({entry['ip']})</h2>
 <p><a href='{entry['url']}' class='text-blue-600 underline' target='_blank'>{entry['url']}</a></p>
 <img src='{entry['screenshot']}' class='mt-4 border rounded'>
 </div>
