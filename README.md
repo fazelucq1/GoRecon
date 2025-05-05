@@ -86,4 +86,4 @@ The HTML report includes:
 - Ensure the Custom Search Engine associated with the CSE ID is configured to search the entire web at [cse.google.com](https://cse.google.com/cse/).
 - The Google Custom Search API has a limit of 100 free queries per day.
 - Use responsibly, adhering to Google's terms of service and privacy regulations.
-🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝🐝
+
