@@ -1,28 +1,31 @@
 import requests
-from bs4 import BeautifulSoup
-import re
+from dotenv import load_dotenv
+import os
 
 def search_urls(query, max_results=10):
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124"}
-    url = f"https://www.google.com/search?q={query}&num={max_results}"
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+    cse_id = os.getenv("GOOGLE_CSE_ID")
+    
+    if not api_key or not cse_id:
+        raise ValueError("GOOGLE_API_KEY o GOOGLE_CSE_ID mancanti nel file .env")
+    
+    url = f"https://www.googleapis.com/customsearch/v1"
+    params = {
+        "key": api_key,
+        "cx": cse_id,
+        "q": query,
+        "num": min(max_results, 10)  #10 requests
+    }
     
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, params=params)
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        
-        urls = []
-        for link in soup.find_all("a"):
-            href = link.get("href")
-            if href and href.startswith("/url?q="):
-                # Estrai l'URL reale
-                clean_url = re.search(r"/url\?q=(.+?)&", href)
-                if clean_url:
-                    urls.append(clean_url.group(1))
-        
-        return urls[:max_results]
+        results = response.json().get("items", [])
+        urls = [item["link"] for item in results if "link" in item]
+        return urls
     except Exception as e:
-        print(f"Errore: {e}")
+        print(f"Errore durante la ricerca: {e}")
         return []
 
 def save_to_file(urls, output_file="results.txt"):
