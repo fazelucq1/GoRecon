@@ -27,9 +27,5 @@ def google_dork_search(dork: str, num_results: int = 20) -> set:
     return ips
 
 def google_search(service: str) -> list:
-    dork1 = f'intitle:\"{service} - Login\" inurl:login'
-    dork2 = f'inurl:\":3333\" intitle:\"{service}\"'
-    ips = set()
-    ips |= google_dork_search(dork1)
-    ips |= google_dork_search(dork2)
-    return list(ips)
+    dork = f'intitle:"{service} - Login" inurl:login'
+    return list(google_dork_search(dork))
