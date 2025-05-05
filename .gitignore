@@ -1,0 +1,11 @@
+pycache/ 
+*.pyc 
+venv/ 
+screenshots/ 
+output.json 
+report.html 
+input_urls.txt 
+*.png
+
+
+
