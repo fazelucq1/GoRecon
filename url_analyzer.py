@@ -101,12 +101,12 @@ def genera_report_html(risultati, output_html):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Analysis Report</title>
+    <title>PyRecon URL Analysis Report</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 p-8">
     <div class="container mx-auto">
-        <h1 class="text-3xl font-bold mb-8">URL Analysis Report</h1>
+        <h1 class="text-3xl font-bold mb-8">PyRecon URL Analysis Report</h1>
     """
     for idx, risultato in enumerate(risultati, start=1):
         html_content += f"""
