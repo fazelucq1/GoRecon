@@ -7,7 +7,7 @@ def search_service(service: str, port: int = 80, num_results: int = 20) -> list:
     print(f"[DEBUG] Using Google dork: {dork}")
     results = []
     seen = set()
-    for url in search(dork, stop=num_results, pause=2.0):
+    for url in search(dork, num_results=num_results):
         print(f"[DEBUG] Found URL: {url}")
         try:
             hostname = urllib.parse.urlparse(url).hostname
