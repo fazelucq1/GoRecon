@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from urllib.parse import urlparse
 from collections import Counter
 import time
+import numpy as np
 
 # Configura logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
