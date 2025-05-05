@@ -1,11 +1,3 @@
-pycache/ 
-*.pyc 
-venv/ 
-screenshots/ 
-output.json 
-report.html 
-input_urls.txt 
-*.png
-
-
-
+__pycache__/
+*.pyc
+results.txt
