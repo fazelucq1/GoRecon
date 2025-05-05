@@ -3,19 +3,18 @@ from bs4 import BeautifulSoup
 import socket
 import urllib.parse
 
-def google_search(service: str, num_results: int = 20) -> list:
-    query = urllib.parse.quote_plus(f"inurl:{service}")
-    url = f"https://www.google.com/search?q={query}&num={num_results}"
+def google_dork_search(dork: str, num_results: int = 20) -> set:
+    query = urllib.parse.quote_plus(dork)
+    url = f'https://www.google.com/search?q={query}&num={num_results}'
     headers = {'User-Agent': 'Mozilla/5.0'}
     resp = requests.get(url, headers=headers, timeout=10)
     soup = BeautifulSoup(resp.text, 'html.parser')
-    links = []
+    links = set()
     for a in soup.select('a'):
         href = a.get('href')
         if href and href.startswith('/url?q='):
             link = href.split('&')[0].replace('/url?q=', '')
-            links.append(link)
-
+            links.add(link)
     ips = set()
     for link in links:
         try:
@@ -25,5 +24,12 @@ def google_search(service: str, num_results: int = 20) -> list:
                 ips.add(ip)
         except Exception:
             continue
+    return ips
 
+def google_search(service: str) -> list:
+    dork1 = f'intitle:"{service} - Login" inurl:login'
+    dork2 = f'inurl:'":3333" intitle:"{service}"'
+    ips = set()
+    ips |= google_dork_search(dork1)
+    ips |= google_dork_search(dork2)
     return list(ips)
