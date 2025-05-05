@@ -10,8 +10,7 @@ def main():
     parser.add_argument('--output', default='report.html', help='HTML report file')
     args = parser.parse_args()
 
-    results = google_search(args.service)
-    hosts = results
+    hosts = google_search(args.service)
 
     if not hosts:
         print(f'No hosts found for service: {args.service}')
