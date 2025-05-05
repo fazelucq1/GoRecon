@@ -14,14 +14,23 @@ pip install -r requirements.txt
 
 ## Usage
 ```bash
-python main.py --service <service> [--output report.html]
+python main.py --service <service> [--port <port>] [--output report.html]
 ```
-Example:
+
+Example specifying port 3333:
 ```bash
-python main.py --service gophish --output gophish_report.html
+python main.py --service gophish --port 3333 --output gophish_report.html
 ```
-This will:
-1. Perform a Google Dork search for the service name.
-2. Extract hostnames and resolve IPs.
-3. Capture screenshots of each host at `http://<IP>`.
-4. Generate an HTML report styled with Tailwind including links and screenshots.
+
+PyRecon constructs the Google dork:
+
+```
+intitle:"<service>" inurl:<port>
+```
+
+It will:
+1. Query Google for the dork using `googlesearch`.
+2. Extract hostnames from the URLs returned.
+3. Resolve hostnames to IPs.
+4. Capture screenshots at `http://<IP>:<port>`.
+5. Generate an HTML report in Tailwind with links and screenshots.
