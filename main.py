@@ -7,21 +7,22 @@ from pyrecon.report import generate_report
 def main():
     parser = argparse.ArgumentParser(description='PyRecon CLI')
     parser.add_argument('--service', required=True, help='Service name to search (e.g. gophish)')
+    parser.add_argument('--port', type=int, default=80, help='Port number to include in dork and screenshot URL')
     parser.add_argument('--output', default='report.html', help='HTML report file')
     args = parser.parse_args()
 
-    print(f"[DEBUG] Searching for service: {args.service}")
-    hosts = search_service(args.service)
+    print(f"[DEBUG] Searching for service: {args.service} on port: {args.port}")
+    hosts = search_service(args.service, args.port)
     print(f"[DEBUG] Hosts found: {hosts}")
 
     if not hosts:
-        print(f'No hosts found for service: {args.service}')
+        print(f'No hosts found for service: {args.service} on port {args.port}')
         return
 
     os.makedirs('screenshots', exist_ok=True)
     entries = []
     for host, ip in hosts:
-        url = f'http://{ip}'
+        url = f'http://{ip}:{args.port}'
         print(f"[DEBUG] Capturing screenshot for: {url}")
         try:
             path = capture_screenshot(url)
