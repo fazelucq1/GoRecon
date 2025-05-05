@@ -3,6 +3,11 @@
 A reconnaissance and reporting tool using Google Dorks in Python.
 
 ## Installation
+```
+git clone https://github.com/fazelucq1/PyRecon.git
+cd PyRecon
+```
+
 ```bash
 pip install -r requirements.txt
 ```
