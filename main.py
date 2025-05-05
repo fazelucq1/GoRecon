@@ -10,7 +10,9 @@ def main():
     parser.add_argument('--output', default='report.html', help='HTML report file')
     args = parser.parse_args()
 
+    print(f"[DEBUG] Searching for service: {args.service}")
     hosts = google_search(args.service)
+    print(f"[DEBUG] Hosts found: {hosts}")
 
     if not hosts:
         print(f'No hosts found for service: {args.service}')
@@ -20,12 +22,15 @@ def main():
     entries = []
     for ip in hosts:
         url = f'http://{ip}'
+        print(f"[DEBUG] Capturing screenshot for: {url}")
         try:
             path = capture_screenshot(url)
             entries.append({'host': ip, 'url': url, 'screenshot': path})
+            print(f"[DEBUG] Screenshot saved: {path}")
         except Exception as e:
             print(f'Failed to capture {url}: {e}')
 
+    print(f"[DEBUG] Generating report for {len(entries)} entries")
     generate_report(entries, args.output)
     print(f'Report generated: {args.output}')
 
