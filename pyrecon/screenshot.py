@@ -9,7 +9,9 @@ def capture_screenshot(url: str) -> str:
     driver = webdriver.Chrome(options=options)
     driver.set_window_size(1920, 1080)
     driver.get(url)
-    filename = f"screenshots/{url.replace('http://', '').replace(':', '_').replace('/', '_')}_{int(time.time())}.png"
+    timestamp = int(time.time())
+    domain = url.replace('http://', '').replace('https://', '').replace('/', '_').replace(':', '_')
+    filename = f"screenshots/{domain}_{timestamp}.png"
     driver.save_screenshot(filename)
     driver.quit()
     return filename
